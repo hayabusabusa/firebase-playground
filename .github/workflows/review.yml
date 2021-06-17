@@ -40,7 +40,6 @@ jobs:
       
       # reviewdog で eslint のエラーをチェック
       - name: Run eslint and reviewdog
-        uses: reviewdog/action-eslint@v1
         run: |
           eslint \"src/**/*\" | reviewdog -f=eslint -reporter=github-pr-review -fail-on-error=true
         env:
