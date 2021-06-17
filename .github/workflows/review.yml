@@ -38,4 +38,5 @@ jobs:
           github_token: ${{ secrets.github_token }}
           workdir: './functions'
           reporter: github-pr-review 
+          level: warning
           eslint_flags: 'src/**/*'
