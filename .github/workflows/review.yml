@@ -44,5 +44,4 @@ jobs:
       - name: TEST Run eslint command
         run: |
           cd functions
-          ls
-          npm run lint
+          tsc --pretty false
