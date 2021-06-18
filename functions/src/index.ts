@@ -1,9 +1,8 @@
 import * as functions from 'firebase-functions';
 
-const a = "commit for CI";
-const b = "commit for CI";
-const c = "commit for CI";
-const d = "commit for CI";
+const a = "commit for CI2";
+const b = "commit for CI2";
+const c = "commit for CI2";
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
