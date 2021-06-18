@@ -31,17 +31,15 @@ jobs:
           cd functions
           npm install
       
-      # reviewdog で ESLint のエラーをチェック
-      - name: Run lint and reviewdog
-        uses: reviewdog/action-eslint@v1
+      # reviewdog のセットアップ
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          workdir: functions
-          reporter: github-pr-review 
-          level: warning
-          eslint_flags: 'src/**/*'
+          reviewdog_version: latest
 
-      - name: TEST Run eslint command
+      - name: Run tsc with reviewdog
         run: |
           cd functions
-          tsc --pretty false
+          tsc --pretty false --noEmit | reviewdog -f=tsc -reporter=github-pr-review -fail-on-error=true
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
