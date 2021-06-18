@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       # リポジトリのチェックアウト
       - name: Checkout Repository
@@ -23,8 +19,8 @@ jobs:
       - name: Run lint and reviewdog
         uses: reviewdog/action-eslint@v1
         with:
-          github_token: ${{ secrets.github_token }}
-          workdir: 'functions'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workdir: functions
           reporter: github-pr-review 
           level: warning
           eslint_flags: 'src/**/*'
