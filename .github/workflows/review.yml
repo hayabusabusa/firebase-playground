@@ -10,10 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
+    strategy:
+      matrix:
+        node-version: [14.x]
+
     steps:
       # リポジトリのチェックアウト
       - name: Checkout Repository
         uses: actions/checkout@v2
+
+      # Node.js のセットアップ
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # 依存パッケージをインストール
+      - name: Install dependency packages
+        run: |
+          cd functions
+          npm install
       
       # reviewdog で ESLint のエラーをチェック
       - name: Run lint and reviewdog
