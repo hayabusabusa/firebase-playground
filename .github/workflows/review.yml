@@ -24,3 +24,8 @@ jobs:
           reporter: github-pr-review 
           level: warning
           eslint_flags: 'src/**/*'
+
+      - name: TEST Run eslint command
+        run: |
+          cd functions
+          npm run lint
